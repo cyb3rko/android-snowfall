@@ -62,8 +62,10 @@ internal class Snowflake(
             bitmap = Bitmap.createScaledBitmap(params.image, size, size, false)
         }
 
-        val speed = ((size - params.sizeMinInPx).toFloat() / (params.sizeMaxInPx - params.sizeMinInPx) *
-                (params.speedMax - params.speedMin) + params.speedMin)
+        val speed = (
+            (size - params.sizeMinInPx).toFloat() / (params.sizeMaxInPx - params.sizeMinInPx) *
+                (params.speedMax - params.speedMin) + params.speedMin
+            )
         val angle = toRadians(randomizer.randomDouble(params.angleMax) * randomizer.randomSignum())
         speedX = speed * kotlin.math.sin(angle)
         speedY = speed * kotlin.math.cos(angle)
@@ -103,7 +105,8 @@ internal class Snowflake(
             }
         }
         if (params.fadingEnabled) {
-            paint.alpha = (alpha * ((params.parentHeight - positionY).toFloat() / params.parentHeight)).toInt()
+            val heightDiff = params.parentHeight - positionY
+            paint.alpha = (alpha * (heightDiff.toFloat() / params.parentHeight)).toInt()
         }
     }
 
