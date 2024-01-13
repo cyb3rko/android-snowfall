@@ -1,33 +1,8 @@
-buildscript {
-
-    ext.versions = [
-            'compileSdk': 30,
-            'buildTools': '30.0.2',
-            'minSdk'    : 16,
-            'targetSdk' : 30,
-
-            'kotlin'    : '1.4.21',
-            'appCompat' : '1.2.0'
-    ]
-
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    }
+plugins {
+    id 'com.android.application' version '8.2.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    delete layout.buildDirectory
 }
